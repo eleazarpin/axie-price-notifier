@@ -1,0 +1,7 @@
+from botNotification import send_message
+
+# https://marketplace.axieinfinity.com/axie?class=Beast&part=back-ronin&part=horn-imp&part=mouth-goda&part=tail-nut-cracker&breedCount=0&breedCount=0
+payload = {"operationName":"GetAxieBriefList","variables":{"from":0,"size":24,"sort":"PriceAsc","auctionType":"Sale","owner":None,"criteria":{"region":None,"parts":["back-ronin","horn-imp","mouth-goda","tail-nut-cracker"],"bodyShapes":None,"classes":["Beast"],"stages":None,"numMystic":None,"pureness":None,"title":None,"breedable":None,"breedCount":[0,0],"hp":[],"skill":[],"speed":[],"morale":[]}},"query":"query GetAxieBriefList($auctionType: AuctionType, $criteria: AxieSearchCriteria, $from: Int, $sort: SortBy, $size: Int, $owner: String) {\n  axies(auctionType: $auctionType, criteria: $criteria, from: $from, sort: $sort, size: $size, owner: $owner) {\n    total\n    results {\n      ...AxieBrief\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment AxieBrief on Axie {\n  id\n  name\n  stage\n  class\n  breedCount\n  image\n  title\n  battleInfo {\n    banned\n    __typename\n  }\n  auction {\n    currentPrice\n    currentPriceUSD\n    __typename\n  }\n  parts {\n    id\n    name\n    class\n    type\n    specialGenes\n    __typename\n  }\n  __typename\n}\n"}
+filter = "[Beast 🦁 - Breed count 0 - Cartas: Single Combat | Ivory Stab | Piercing Sound | Nut Throw](https://marketplace.axieinfinity.com/axie?class=Beast&part=back-ronin&part=horn-imp&part=mouth-goda&part=tail-nut-cracker&breedCount=0&breedCount=0)"
+
+send_message(payload, filter, False)
